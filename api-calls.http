@@ -1,0 +1,28 @@
+GET http://localhost:3001/api/persons/
+Accept: application/json
+
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "Arto Hellos",
+  "number": "9876543210"
+}
+
+###
+PUT http://localhost:3001/api/persons/31251235123/
+Content-Type: application/json
+
+{
+  "name": "Arto Hellos",
+  "number": "9876543210"
+}
+
+###
+PUT http://localhost:3001/api/persons/609d343eadfc4a39fc0579a3/
+Content-Type: application/json
+
+{
+  "name": "Aditya Sharma",
+  "number": "9876543211"
+}
