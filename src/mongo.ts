@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-// import dotenv from 'dotenv'
-
-// dotenv.config()
+import dotenv from 'dotenv'
+// import  * as validator from 'mongoose-unique-validator'
+dotenv.config()
 
 const url = process.env.MONGO_DB_URL
 
@@ -22,8 +22,17 @@ interface PhonebookParams {
 }
 
 const phonebookSchema = new mongoose.Schema<PhonebookParams>({
-    name: String,
-    number: String,
+    name: {
+        type: String,
+        minLength: 3,
+        required: true,
+        unique: true,
+    },
+    number: {
+        type: String,
+        minLength: 8,
+        required: true,
+    },
 })
 
 phonebookSchema.set("toJSON", {
@@ -35,8 +44,3 @@ phonebookSchema.set("toJSON", {
 })
 
 export const Phonebook = mongoose.model<PhonebookParams>('Phonebook', phonebookSchema)
-
-
-// function closeConnection() {
-//     mongoose.connection.close().then(() => console.log(`Connection Closed!`))
-// }

@@ -35,22 +35,16 @@ app.post('/api/persons/', (req, res) => {
             .status(400)
             .send({error: 'Name or number missing'})
     }
-
+    // TODO: Entry validation & error handling
     Phonebook.find({name: newPerson.name}).then(results => {
         // No person with same name exists
-        if (results.length === 0) {
-            const uploadPerson = new Phonebook({
-                ...newPerson
-            })
-            uploadPerson.save().then((returnedPerson) => {
-                    res.status(200).send(returnedPerson)
-                }
-            )
-        } else {
-            res
-                .status(409)
-                .send({error: 'Name already in Phonebook'})
-        }
+        const uploadPerson = new Phonebook({
+            ...newPerson
+        })
+        uploadPerson.save().then((returnedPerson) => {
+                res.status(200).send(returnedPerson)
+            }
+        )
     })
 })
 
