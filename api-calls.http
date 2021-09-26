@@ -1,12 +1,13 @@
 GET http://localhost:3001/api/persons/
 Accept: application/json
 
+###
 POST http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-  "name": "Arto Hellos",
-  "number": "9876543210"
+  "name": "Ada Lovelace",
+  "number": "39-44-5323523"
 }
 
 ###

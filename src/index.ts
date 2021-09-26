@@ -2,6 +2,7 @@ import morgan from 'morgan'
 import express from 'express'
 import cors from 'cors'
 import {Phonebook} from "./mongo";
+import {PORT} from "./config";
 
 const app = express()
 
@@ -10,7 +11,6 @@ app.use(express.json())
 app.use(morgan('tiny'))
 app.use(cors())
 
-const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => console.log(`App Started at PORT ${PORT}`))
 
@@ -36,7 +36,7 @@ app.post('/api/persons/', (req, res) => {
             .send({error: 'Name or number missing'})
     }
     // TODO: Entry validation & error handling
-    Phonebook.find({name: newPerson.name}).then(results => {
+    Phonebook.find({name: newPerson.name}).then(() => {
         // No person with same name exists
         const uploadPerson = new Phonebook({
             ...newPerson
@@ -78,9 +78,9 @@ app.delete('/api/persons/:id', (req, res) => {
 })
 
 app.get('/info', (req, res) => {
+    // TODO: Implement an algorithm to fetch the length if phonebookLength is undefined
     if (phonebookLength === undefined) {
 
     }
-    // TODO: Implement an algorithm to fetch the length if phonebookLength is undefined
     res.send(`<p>Phonebook has info for ${phonebookLength} people</p><p>${new Date()} ${new Date().getTimezoneOffset()}</p>`)
 })

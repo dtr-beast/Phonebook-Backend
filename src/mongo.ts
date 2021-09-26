@@ -1,12 +1,11 @@
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-// import  * as validator from 'mongoose-unique-validator'
-dotenv.config()
+import {URL} from "./config";
 
-const url = process.env.MONGO_DB_URL
+const uniqueValidator = require('mongoose-unique-validator')
+
 
 mongoose
-    .connect(url,
+    .connect(URL,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -15,6 +14,7 @@ mongoose
         }
     ).then(() => console.log(`Connection Established to MongoDB!`)
 )
+mongoose.plugin(uniqueValidator)
 
 interface PhonebookParams {
     name: string,
