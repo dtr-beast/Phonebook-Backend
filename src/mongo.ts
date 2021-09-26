@@ -12,7 +12,7 @@ mongoose
             useFindAndModify: false,
             useCreateIndex: true
         }
-    ).then(() => console.log(`Connection Established to MongoDB!`)
+    ).then(() => console.log(`Connected to MongoDB!`)
 )
 mongoose.plugin(uniqueValidator)
 
